@@ -70,7 +70,11 @@ const updateNote = (title, payload) => {
 };
 
 const listNotes = () => {
-	console.log(getNotes());
+	const notes = getNotes();
+	console.log(chalk.bgGreen("Your notes: "));
+	notes.forEach(n => {
+		console.log(n.title);
+	});
 };
 
 const readNote = title => {
