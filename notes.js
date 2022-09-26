@@ -54,19 +54,19 @@ const updateNote = (title, payload) => {
 		console.log(
 			chalk.bgRed(`No notes with a title of '${title}' could be found.`)
 		);
-		return;
+	} else {
+		let note = notes[noteToChangeIndex];
+		note = {
+			title: payload.title || note.title,
+			body: payload.body || note.body,
+		};
+
+		notes[noteToChangeIndex] = note;
+
+		saveNotes(notes);
+
+		console.log(chalk.bgGreen("Successfully updated task"));
 	}
-	let note = notes[noteToChangeIndex];
-	note = {
-		title: payload.title || note.title,
-		body: payload.body || note.body,
-	};
-
-	notes[noteToChangeIndex] = note;
-
-	saveNotes(notes);
-
-	console.log(chalk.bgGreen("Successfully updated task"));
 };
 
 const listNotes = () => {
@@ -82,11 +82,10 @@ const readNote = title => {
 	const note = notes.find(n => n.title === title);
 	if (!note) {
 		console.log(chalk.bgRed("No note with that title could be found"));
-		return;
+	} else {
+		console.log(chalk.bgGreen(`Title: ${note.title}`));
+		console.log(chalk.bgGreen(`Body: ${note.body}`));
 	}
-
-	console.log(chalk.bgGreen(`Title: ${note.title}`));
-	console.log(chalk.bgGreen(`Body: ${note.body}`));
 };
 
 module.exports = {
