@@ -1,5 +1,10 @@
 const fs = require("fs");
 
+const saveNotes = notes => {
+	const newNotesJSON = notes.length === 0 ? "" : JSON.stringify(notes);
+	fs.writeFileSync("notes.json", newNotesJSON);
+};
+
 const getNotes = () => {
 	let notes = [];
 	if (fs.existsSync("notes.json")) {
@@ -14,8 +19,7 @@ const getNotes = () => {
 const addNote = (title, body) => {
 	const notes = getNotes();
 	notes.push({ title, body });
-	const newNotesJSON = JSON.stringify(notes);
-	fs.writeFileSync("notes.json", newNotesJSON);
+	saveNotes(notes);
 };
 
 const removeNote = title => {
@@ -27,8 +31,7 @@ const removeNote = title => {
 		);
 	}
 
-	const newNotesJSON = newNotes.length === 0 ? "" : JSON.stringify(newNotes);
-	fs.writeFileSync("notes.json", newNotesJSON);
+	saveNotes(newNotes);
 };
 
 const updateNote = (title, payload) => {
@@ -46,8 +49,7 @@ const updateNote = (title, payload) => {
 
 	notes[noteToChangeIndex] = note;
 
-	const newNotesJSON = JSON.stringify(notes);
-	fs.writeFileSync("notes.json", newNotesJSON);
+	saveNotes(notes);
 };
 
 const listNotes = () => {
