@@ -49,7 +49,7 @@ yargs.command(
 				alias: "t",
 				description: "The title of the note to remove",
 				type: "string",
-				demandOptio: true,
+				demandOption: true,
 			},
 		});
 	},

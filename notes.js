@@ -36,9 +36,10 @@ const removeNote = title => {
 		console.warn(
 			"No message with that title was found so no notes were removed from notes.json"
 		);
+	} else {
+		saveNotes(newNotes);
+		console.log(`Successfully removed the note with a title of: ${title}`);
 	}
-
-	saveNotes(newNotes);
 };
 
 const updateNote = (title, payload) => {
