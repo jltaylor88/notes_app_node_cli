@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const fs = require("fs");
 
 const saveNotes = notes => {
@@ -33,12 +34,16 @@ const removeNote = title => {
 	const notes = getNotes();
 	const newNotes = notes.filter(n => n.title !== title);
 	if (notes.length === newNotes.length) {
-		console.warn(
-			"No message with that title was found so no notes were removed from notes.json"
+		console.log(
+			chalk.bgRed(
+				"No message with that title was found so no notes were removed from notes.json"
+			)
 		);
 	} else {
 		saveNotes(newNotes);
-		console.log(`Successfully removed the note with a title of: ${title}`);
+		console.log(
+			chalk.bgGreen(`Successfully removed the note with a title of: ${title}`)
+		);
 	}
 };
 
