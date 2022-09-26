@@ -31,5 +31,24 @@ const removeNote = title => {
 	fs.writeFileSync("notes.json", newNotesJSON);
 };
 
-module.exports = { addNote, getNotes, removeNote };
+const updateNote = (title, payload) => {
+	const notes = getNotes();
+	const noteToChangeIndex = notes.findIndex(n => n.title === title);
+	if (noteToChangeIndex < 0) {
+		console.error(`No notes with a title of ${title} could be found.`);
+		return;
+	}
+	let note = notes[noteToChangeIndex];
+	note = {
+		title: payload.title || note.title,
+		body: payload.body || note.body,
+	};
+
+	notes[noteToChangeIndex] = note;
+
+	const newNotesJSON = JSON.stringify(notes);
+	fs.writeFileSync("notes.json", newNotesJSON);
+};
+
+module.exports = { addNote, getNotes, removeNote, updateNote };
 
