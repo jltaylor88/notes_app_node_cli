@@ -54,5 +54,23 @@ const listNotes = () => {
 	return getNotes();
 };
 
-module.exports = { addNote, getNotes, listNotes, removeNote, updateNote };
+const readNote = title => {
+	const notes = getNotes();
+	const note = notes.find(n => n.title === title);
+	if (!note) {
+		console.warn("No note with that title could be found");
+		return;
+	}
+
+	return note;
+};
+
+module.exports = {
+	addNote,
+	getNotes,
+	listNotes,
+	readNote,
+	removeNote,
+	updateNote,
+};
 
