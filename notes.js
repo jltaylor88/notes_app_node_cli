@@ -24,9 +24,9 @@ const addNote = (title, body) => {
 	if (duplicateNotes.length === 0) {
 		notes.push({ title, body });
 		saveNotes(notes);
-		console.log("New note added!");
+		console.log(chalk.bgGreen("New note added!"));
 	} else {
-		console.log("Note title already taken!");
+		console.log(chalk.bgRed("Note title already taken!"));
 	}
 };
 
@@ -51,7 +51,9 @@ const updateNote = (title, payload) => {
 	const notes = getNotes();
 	const noteToChangeIndex = notes.findIndex(n => n.title === title);
 	if (noteToChangeIndex < 0) {
-		console.error(`No notes with a title of ${title} could be found.`);
+		console.log(
+			chalk.bgRed(`No notes with a title of ${title} could be found.`)
+		);
 		return;
 	}
 	let note = notes[noteToChangeIndex];
@@ -63,6 +65,8 @@ const updateNote = (title, payload) => {
 	notes[noteToChangeIndex] = note;
 
 	saveNotes(notes);
+
+	console.log(chalk.bgGreen("Successfully updated task"));
 };
 
 const listNotes = () => {
@@ -73,11 +77,12 @@ const readNote = title => {
 	const notes = getNotes();
 	const note = notes.find(n => n.title === title);
 	if (!note) {
-		console.warn("No note with that title could be found");
+		console.log(chalk.bgRed("No note with that title could be found"));
 		return;
 	}
 
-	return console.log(note);
+	console.log(chalk.bgGreen(`Title: ${note.title}`));
+	console.log(chalk.bgGreen(`Body: ${note.body}`));
 };
 
 module.exports = {
