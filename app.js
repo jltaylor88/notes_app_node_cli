@@ -78,7 +78,7 @@ yargs.command(
 				alias: "t",
 				description: "The title of the note to read",
 				type: "string",
-				demand: true,
+				demandOption: true,
 			},
 		});
 	},
