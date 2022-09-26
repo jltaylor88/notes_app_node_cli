@@ -2,6 +2,7 @@
 const chalk = require("chalk");
 const y = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
+const { addNote } = require("./notes");
 const yargs = y(hideBin(process.argv));
 
 // Customise yargs version
@@ -28,8 +29,7 @@ yargs.command(
 		});
 	},
 	argv => {
-		console.log(`Title: ${argv.title}`);
-		console.log(`Body: ${argv.body}`);
+		addNote(argv.title, argv.body);
 	}
 );
 
