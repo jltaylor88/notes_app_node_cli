@@ -18,8 +18,15 @@ const getNotes = () => {
 
 const addNote = (title, body) => {
 	const notes = getNotes();
-	notes.push({ title, body });
-	saveNotes(notes);
+	const duplicateNotes = notes.filter(n => n.title === title);
+
+	if (duplicateNotes.length === 0) {
+		notes.push({ title, body });
+		saveNotes(notes);
+		console.log("New note added!");
+	} else {
+		console.log("Note title already taken!");
+	}
 };
 
 const removeNote = title => {
@@ -53,7 +60,7 @@ const updateNote = (title, payload) => {
 };
 
 const listNotes = () => {
-	return getNotes();
+	console.log(getNotes());
 };
 
 const readNote = title => {
@@ -64,7 +71,7 @@ const readNote = title => {
 		return;
 	}
 
-	return note;
+	return console.log(note);
 };
 
 module.exports = {

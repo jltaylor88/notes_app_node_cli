@@ -64,7 +64,7 @@ yargs.command(
 	"List the notes",
 	() => {},
 	() => {
-		console.log(listNotes());
+		listNotes();
 	}
 );
 
@@ -83,10 +83,7 @@ yargs.command(
 		});
 	},
 	argv => {
-		const note = readNote(argv.title);
-		if (note) {
-			console.log(note);
-		}
+		readNote(argv.title);
 	}
 );
 
