@@ -2,7 +2,7 @@
 const chalk = require("chalk");
 const y = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
-const { addNote, removeNote, updateNote } = require("./notes");
+const { addNote, listNotes, removeNote, updateNote } = require("./notes");
 const yargs = y(hideBin(process.argv));
 
 // Customise yargs version
@@ -58,7 +58,7 @@ yargs.command(
 	"List the notes",
 	() => {},
 	() => {
-		console.log("Listing the notes");
+		console.log(listNotes());
 	}
 );
 

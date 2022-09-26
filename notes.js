@@ -50,5 +50,9 @@ const updateNote = (title, payload) => {
 	fs.writeFileSync("notes.json", newNotesJSON);
 };
 
-module.exports = { addNote, getNotes, removeNote, updateNote };
+const listNotes = () => {
+	return getNotes();
+};
+
+module.exports = { addNote, getNotes, listNotes, removeNote, updateNote };
 
