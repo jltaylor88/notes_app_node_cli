@@ -52,7 +52,7 @@ const updateNote = (title, payload) => {
 	const noteToChangeIndex = notes.findIndex(n => n.title === title);
 	if (noteToChangeIndex < 0) {
 		console.log(
-			chalk.bgRed(`No notes with a title of ${title} could be found.`)
+			chalk.bgRed(`No notes with a title of '${title}' could be found.`)
 		);
 		return;
 	}
