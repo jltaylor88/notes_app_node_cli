@@ -19,9 +19,9 @@ const getNotes = () => {
 
 const addNote = (title, body) => {
 	const notes = getNotes();
-	const duplicateNotes = notes.filter(n => n.title === title);
+	const duplicateNote = notes.find(n => n.title === title);
 
-	if (duplicateNotes.length === 0) {
+	if (!duplicateNote) {
 		notes.push({ title, body });
 		saveNotes(notes);
 		console.log(chalk.bgGreen("New note added!"));
